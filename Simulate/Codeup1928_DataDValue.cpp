@@ -6,7 +6,7 @@ inline int isLeap(int year) {
 	return (year % 4 == 0 && year % 100) || (year % 400 == 0);
 }
 
-int main() {
+int mainphGVO5Q4CMuAtriLt() {
 	int M[13] = { 0,31,28,31,30,31,30,31,31,30,31,30,31 };
 	int t1, t2;
 	int y1, y2, m1, m2, d1, d2;
