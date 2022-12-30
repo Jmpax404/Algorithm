@@ -13,10 +13,25 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Simulate">
+      <UniqueIdentifier>{104c8f54-8ff3-40c9-b30b-7036865c6c90}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Algorithm.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="PATb1001_3nPlus1.cpp">
+      <Filter>Source Files\Simulate</Filter>
+    </ClCompile>
+    <ClCompile Include="PATb1032_Excavator.cpp">
+      <Filter>Source Files\Simulate</Filter>
+    </ClCompile>
+    <ClCompile Include="Codeup1934_FindX.cpp">
+      <Filter>Source Files\Simulate</Filter>
+    </ClCompile>
+    <ClCompile Include="PATb1036_ObamaSquare.cpp">
+      <Filter>Source Files\Simulate</Filter>
+    </ClCompile>
+    <ClCompile Include="Codeup1928_DataDValue.cpp">
+      <Filter>Source Files\Simulate</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

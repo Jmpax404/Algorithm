@@ -127,7 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Algorithm.cpp" />
+    <ClCompile Include="Codeup1928_DataDValue.cpp" />
+    <ClCompile Include="Codeup1934_FindX.cpp" />
+    <ClCompile Include="PATb1001_3nPlus1.cpp" />
+    <ClCompile Include="PATb1032_Excavator.cpp" />
+    <ClCompile Include="PATb1036_ObamaSquare.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
