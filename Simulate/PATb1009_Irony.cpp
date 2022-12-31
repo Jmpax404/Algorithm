@@ -3,7 +3,7 @@
 #include <cstdio>
 #include <cstring>
 
-int main() {
+int main774321() {
 	char s[100];
 	int bs[50], ls[50], si = 0;
 	fgets(s, 100,stdin);

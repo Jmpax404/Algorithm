@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Init\PATa1025_PATRanking.cpp" />
+    <ClCompile Include="Init\Sort.cpp" />
     <ClCompile Include="Simulate\Codeup1928_DataDValue.cpp" />
     <ClCompile Include="Simulate\Codeup1934_FindX.cpp" />
     <ClCompile Include="Simulate\Codeup5901_Palindrome.cpp" />

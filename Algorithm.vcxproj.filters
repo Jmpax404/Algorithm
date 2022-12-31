@@ -16,6 +16,9 @@
     <Filter Include="Source Files\Simulate">
       <UniqueIdentifier>{104c8f54-8ff3-40c9-b30b-7036865c6c90}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Init">
+      <UniqueIdentifier>{95c46d26-1b99-467d-a3f5-f526e869317d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Simulate\Codeup1928_DataDValue.cpp">
@@ -41,6 +44,12 @@
     </ClCompile>
     <ClCompile Include="Simulate\PATb1009_Irony.cpp">
       <Filter>Source Files\Simulate</Filter>
+    </ClCompile>
+    <ClCompile Include="Init\Sort.cpp">
+      <Filter>Source Files\Init</Filter>
+    </ClCompile>
+    <ClCompile Include="Init\PATa1025_PATRanking.cpp">
+      <Filter>Source Files\Init</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
