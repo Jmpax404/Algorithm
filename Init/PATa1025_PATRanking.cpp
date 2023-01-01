@@ -21,7 +21,7 @@ bool compare1(Student s1, Student s2) {
 
 int main() {
 	int m, n;
-	Student b[30010];
+	Student b[30000];
 	int bn = 0;
 	scanf("%d", &m);
 	for (int i = 1; i <= m; i++) {
@@ -53,7 +53,7 @@ int main() {
 			r = i + 1;
 			
 		}
-		printf("%lld %d %d %d\n", b[i].num, r, b[i].loc, b[i].rank);
+		printf("%013lld %d %d %d\n", b[i].num, r, b[i].loc, b[i].rank);
 	}
 	return 0;
 }
