@@ -1,7 +1,7 @@
 #include <cstdio>
 
 int main() {
-	char s[10002], c;//gets¶ÁÈë\n,ËùÒÔÒ»¹²10000Î»+\n\0=100002 
+	char s[10002], c;//getsè¯»å…¥\n,æ‰€ä»¥ä¸€å…±10000ä½+\n\0=100002 
 	while (fgets(s, 10002, stdin)) {
 		bool a[127] = { false };//ascii 0000 0000 ~ 0111 1111
 		while ((c = getchar()) != '\n') a[c] = true;
