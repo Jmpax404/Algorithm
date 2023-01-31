@@ -2,11 +2,16 @@
 #include <stdlib.h>
 
 int main(){
-	double a = 1234;
-	a=atof("-");
-	printf("%lf",a);
-	return 0;
+	printf("%d\n",'\0');
+	printf("%d\n",EOF);
 }
+
+//	double a = 1234;
+//	a=atof("-");
+//	printf("%lf",a);
+//	return 0;
+
+
 
 //	int i;
 //	printf("\a");
