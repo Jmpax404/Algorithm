@@ -17,40 +17,15 @@ int partition(int arr[], int s, int e){
 	int t=arr[p];
 	arr[p]=arr[s];
 	arr[s]=t;
-	printf("p:%d %d %d %d\n",p,arr[0],arr[p],t); 
-		{
-		printf(">>>>>>>>>>>>>>>>Before\n");
-		printf(">>>%d %d\n",s,e) ;
-		int i;
-		for(i=s;i<=e;i++){
-			printf(" %d",arr[i]);
-		}
-		printf("\n");
-	}
 	int l=s;
 	int r=e;
 	while(l<r){
 		while(l<r && arr[r]>t){ r--; }
-		int i;
-		for(i=s;i<=e;i++){
-			printf(" %d",arr[i]);
-		}
-		printf("\n");
-			arr[l]=arr[r];
-		
+		arr[l]=arr[r];		
 		while(l<r && arr[l]<=t){ l++; }
 		arr[r]=arr[l];
 	}
 	arr[l]=t;
-	
-	{
-		printf(">>>>>>>>>>>>>>>>After\n");
-		int i;
-		for(i=s;i<=e;i++){
-			printf(" %d",arr[i]);
-		}
-		printf("\n");
-	}
 	return l;
 }
 
