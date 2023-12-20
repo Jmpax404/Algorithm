@@ -1,64 +1,54 @@
-class Solution {
+import java.util.*;
 
-    public int[] twoSum1(int[] numbers, int target) {
-        int i = 0, j = numbers.length - 1;
-        while (i < j) {
-            int m = (i + j) >>> 1;
-            if (numbers[i] + numbers[m] > target) {
-                j = m - 1;
-            } else if (numbers[m] + numbers[j] < target) {
-                i = m + 1;
-            } else if (numbers[i] + numbers[j] > target) {
-                j--;
-            } else if (numbers[i] + numbers[j] < target) {
-                i++;
+public class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0, len = nums.length; i < len; i++) {
+            int a = nums[i];
+            Integer value = map.get(target - a);
+            if (value != null) {
+                return new int[]{i, value};
             } else {
-                /*
-                numbers[i] == numbers[j]
-                 */
-                return new int[]{i + 1, j + 1};
+                map.put(a, i);
             }
         }
-        return new int[]{0, 0};
+        return new int[0];
     }
 
 
-    public int[] twoSum(int[] numbers, int target) {
-        int i = 0;
-        int j = numbers.length - 1;
-        while (i < j) {
-            int t = numbers[i] + numbers[j];
-            if (t > target) {
-                int l = i + 1;
-                int r = j;
-                int base = target - numbers[i];
-                while (l < r) {
-                    int m = (l + r) >>> 1;
-                    if (numbers[m] > base) {
-                        r = m;
-                    } else {
-                        l = m + 1;
-                    }
-                }
-                j = l - 1;
-            } else if (t < target) {
-                int l = i;
-                int r = j - 1;
-                int base = target - numbers[j];
-                while (l < r) {
-                    int m = (l + r) >>> 1;
-                    if (numbers[m] >= base) {
-                        r = m;
-                    } else {
-                        l = m + 1;
-                    }
-                }
-                i = l;
-            } else {
-                return new int[]{i + 1, j + 1};
-            }
+    class Item {
+        int v;
+        int id;
+
+        public Item(int v, int id) {
+            this.v = v;
+            this.id = id;
         }
-        return new int[]{0, 0};
+
+        public int getV() {
+            return v;
+        }
     }
 
+    public int[] twoSum1(int[] nums, int target) {
+        List<Item> items = new ArrayList<>();
+        for (int i = 0; i < nums.length; i++) {
+            items.add(new Item(nums[i], i));
+        }
+
+        items.sort(Comparator.comparingInt(Item::getV));
+        int l = 0;
+        int r = nums.length - 1;
+
+        while (l < r) {
+            if (items.get(l).v + items.get(r).v == target) {
+                return new int[]{items.get(l).id, items.get(r).id};
+            } else if (items.get(l).v + items.get(r).v > target) {
+                r--;
+            } else {
+                l++;
+            }
+        }
+        return new int[0];
+    }
 }
