@@ -1,3 +1,5 @@
+package com.jmpax.auto;
+
 import java.util.Arrays;
 
 class Solution {
@@ -19,7 +21,23 @@ class Solution {
         return min == Integer.MAX_VALUE ? 0 : min;
     }
 
-    public int minSubArrayLen1(int target, int[] nums) {
+    public int minSubArrayLen12(int target, int[] nums) {//滑动窗口
+        int n = nums.length;
+        int sum = 0;
+        int j = 0;
+        int minLen = Integer.MAX_VALUE;
+        for (int i = 0; i < n; i++) {
+            sum += nums[i];
+            while (sum >= target) {
+                int len = i - j + 1;
+                minLen = Math.min(minLen, len);
+                sum -= nums[j++];
+            }
+        }
+        return minLen == Integer.MAX_VALUE ? 0 : minLen;
+    }
+
+    public int minSubArrayLen1(int target, int[] nums) {//滑动窗口
         int sum = 0;
         int n = nums.length;
         int min = Integer.MAX_VALUE;
@@ -35,7 +53,7 @@ class Solution {
         return min == Integer.MAX_VALUE ? 0 : min;
     }
 
-    public int minSubArrayLen0(int target, int[] nums) {
+    public int minSubArrayLen0(int target, int[] nums) {//?
         int n = nums.length;
         int[] sums = new int[n];
         for (int k = 0; k < n; k++) {
