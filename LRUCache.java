@@ -1,97 +1,146 @@
-public class LRUCache {
-    Node[] map;
-    DoubleCircularLinkedList list;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+public class Solution {
+
+}
+
+class LRUCache {
+    int capacity;
+    MyHashMap map;
+    DoubleLinkedList list;
 
     public LRUCache(int capacity) {
-        map = new Node[10001];
-        list = new DoubleCircularLinkedList(capacity);
+        this.capacity = capacity;
+        this.map = new MyHashMap();
+        this.list = new DoubleLinkedList();
     }
 
     public int get(int key) {
-        Node node = map[key];
+        DoubleNode node = map.get(key);
         if (node == null) {
             return -1;
+        } else {
+            list.changeToLast(node);
+            return node.value;
         }
-        list.remove(node);
-        list.addFirst(node);
-        return node.val;
     }
 
     public void put(int key, int value) {
-        Node node = map[key];
+        DoubleNode node = map.get(key);
         if (node == null) {
-            node = new Node(key, value);
-            map[key] = node;
-            int removeKey = list.addFirst(node);
-            if (removeKey != -1) {
-                map[removeKey] = null;
+            if (list.size >= capacity) {
+                int firstKey = list.removeFirst();
+                if (firstKey != -1) {
+                    map.remove(firstKey);
+                }
             }
+            node = list.addLast(key, value);
+            map.put(key, node);
         } else {
-            node.val = value;
-            list.remove(node);
-            list.addFirst(node);
+            node.value = value;
+            list.changeToLast(node);
         }
-    }
-
-    public static void main(String[] args) {
-        LRUCache lRUCache = new LRUCache(2);
-        lRUCache.put(1, 0);
-        lRUCache.put(2, 2);
-        System.out.println(lRUCache.get(1));
-        lRUCache.put(3, 3); // 该操作会使得关键字 2 作废，缓存是 {1=1, 3=3}
-        System.out.println(lRUCache.get(2));  // 返回 -1 (未找到)
-        lRUCache.put(4, 4); // 该操作会使得关键字 1 作废，缓存是 {4=4, 3=3}
-        System.out.println(lRUCache.get(1));    // 返回 -1 (未找到)
-        System.out.println(lRUCache.get(3));    // 返回 3
-        System.out.println(lRUCache.get(4));    // 返回 4
     }
 }
 
-class Node {
-    Node prev;
-    Node next;
-    int key;
-    int val;
+class MyHashMap {
+    DoubleNode[] map = new DoubleNode[10001];//空间换时间
 
-    public Node(int key, int val) {
-        this.key = key;
-        this.val = val;
+    public void put(int key, DoubleNode node) {
+        map[key] = node;
+    }
+
+    public DoubleNode get(int key) {
+        return map[key];
+    }
+
+    public void remove(int key) {
+        map[key] = null;
     }
 }
 
-class DoubleCircularLinkedList {
-    Node sentinel;
-    int n;
-    int capacity;
+class DoubleLinkedList {
+    DoubleNode head;
+    DoubleNode tail;
+    int size;
 
-    public DoubleCircularLinkedList(int capacity) {
-        sentinel = new Node(-1, -1);
-        sentinel.next = sentinel;
-        sentinel.prev = sentinel;
-        n = 0;
-        this.capacity = capacity;
+    public DoubleLinkedList() {
+        head = new DoubleNode(0, 0);
+        tail = new DoubleNode(0, 0);
+        head.next = tail;
+        tail.prev = head;
+        size = 0;
     }
 
-    public int addFirst(Node node) {
-        int key = -1;
-        if (n >= capacity) {
-            key = sentinel.prev.key;
-            remove(sentinel.prev);
-        }
-        Node nextNode = sentinel.next;
-        sentinel.next = node;
-        node.prev = sentinel;
+    public DoubleNode addLast(int key, int value) {
+        DoubleNode node = new DoubleNode(key, value);
+        addLast(node);
+        size++;
+        return node;
+    }
+
+    private void addLast(DoubleNode node) {
+        DoubleNode prevNode = tail.prev;
+        DoubleNode nextNode = tail;
+        prevNode.next = node;
+        node.prev = prevNode;
         node.next = nextNode;
         nextNode.prev = node;
-        n++;
-        return key;
     }
 
-    public void remove(Node node) {
-        Node prevNode = node.prev;
-        Node nextNode = node.next;
-        prevNode.next = nextNode;
-        nextNode.prev = prevNode;
-        n--;
+    public int removeFirst() {//return key
+        if (head.next != tail) {
+            DoubleNode node = head.next;
+            head.next = node.next;
+            node.next.prev = head;
+            int key = node.key;
+            node.next = null;
+            node.prev = null;
+            node = null;
+            size--;
+            return key;
+        } else {
+            return -1;
+        }
+    }
+
+    public void changeToLast(DoubleNode node) {
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
+        addLast(node);
+    }
+
+}
+
+class DoubleNode {
+    DoubleNode prev;
+    DoubleNode next;
+    int key;
+    int value;
+
+    public DoubleNode(int key, int value) {
+        this.key = key;
+        this.value = value;
+    }
+
+}
+
+
+class LRUCache00 extends LinkedHashMap<Integer, Integer> {
+    private int maxSize;
+
+    public LRUCache00(int capacity) {
+        super(capacity, 0.75f, true);
+        maxSize = capacity;
+    }
+
+    public int get(int key) {
+        return getOrDefault(key, -1);
+    }
+
+    @Override
+    protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
+        return size() > maxSize;
     }
 }
